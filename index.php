@@ -25,6 +25,7 @@ if ($edit_id !== null) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="img/logo.png">
     <title>Editor de Texto</title>
     <!-- Bootstrap CSS -->
@@ -36,6 +37,7 @@ if ($edit_id !== null) {
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 10px;
         }
         .card {
             border-radius: 1.5rem;
@@ -43,9 +45,11 @@ if ($edit_id !== null) {
             background: rgba(255,255,255,0.95);
             display: flex;
             flex-direction: column;
-            height: 80vh;
+            height: 90vh;
+            max-height: 90vh;
             justify-content: flex-end;
             position: relative;
+            width: 100%;
         }
         .sticky-header {
             position: sticky;
@@ -75,12 +79,14 @@ if ($edit_id !== null) {
             border: none;
             border-radius: 0.5rem;
             margin-bottom: 0.5rem;
-            background: #f4f8fb;
+            background: transparent;
+            padding: 0.5rem 0;
         }
         .eliminar-link {
             color: #e74c3c;
             text-decoration: none;
             font-weight: bold;
+            font-size: 0.85rem;
         }
         .eliminar-link:hover {
             text-decoration: underline;
@@ -90,6 +96,7 @@ if ($edit_id !== null) {
             text-decoration: none;
             font-weight: bold;
             margin-right: 10px;
+            font-size: 0.85rem;
         }
         .editar-link:hover {
             text-decoration: underline;
@@ -98,12 +105,13 @@ if ($edit_id !== null) {
             font-weight: 700;
             color: #1e3c72;
             letter-spacing: 1px;
+            font-size: 1.5rem;
         }
         .bubble-left {
             background: #e5e5ea;
             color: #222;
             border-radius: 1.2em 1.2em 1.2em 0.3em;
-            max-width: 75%;
+            max-width: 85%;
             align-self: flex-start;
             margin-bottom: 8px;
             box-shadow: 0 2px 8px rgba(30,60,114,0.07);
@@ -112,77 +120,220 @@ if ($edit_id !== null) {
             background: #1e3c72;
             color: #fff;
             border-radius: 1.2em 1.2em 0.3em 1.2em;
-            max-width: 75%;
+            max-width: 85%;
             align-self: flex-end;
             margin-bottom: 8px;
             box-shadow: 0 2px 8px rgba(30,60,114,0.07);
+            position: relative;
+            padding: 12px 16px;
+            word-wrap: break-word;
         }
         .chat-date {
-            font-size: 0.85em;
-            color: #888;
+            font-size: 0.75rem;
+            color: #b3c0d1;
             position: absolute;
             right: 12px;
-            bottom: 2px;
+            bottom: 6px;
+            background: rgba(30, 60, 114, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .indice-msg {
+            position: absolute;
+            top: 6px;
+            right: 12px;
+            font-size: 0.75rem;
+            color: #b3c0d1;
+            font-weight: bold;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 2px 6px;
+            z-index: 2;
+        }
+        .editado-label {
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 4px;
         }
         .avatar {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 1px 4px rgba(30,60,114,0.12);
             background: #fff;
         }
         .user-info {
-            min-width: 48px;
+            min-width: 40px;
+            text-align: center;
         }
         .user-name {
-            font-size: 0.8em;
+            font-size: 0.7rem;
             color: #1e3c72;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-        .bubble-right {
-            background: #1e3c72;
-            color: #fff;
-            border-radius: 1.2em 1.2em 0.3em 1.2em;
-            max-width: 75%;
-            align-self: flex-end;
-            margin-bottom: 8px;
-            box-shadow: 0 2px 8px rgba(30,60,114,0.07);
-            position: relative;
+        .message-content {
+            flex: 1;
+            max-width: 85%;
+            padding-right: 8px;
         }
-        .chat-date {
-            font-size: 0.85em;
-            color: #b3c0d1;
-            position: absolute;
-            right: 12px;
-            bottom: 2px;
+        .message-text {
+            margin-bottom: 20px;
+            line-height: 1.4;
         }
-        .indice-msg {
-            position: absolute;
-            top: 6px;
-            right: 12px;
-            font-size: 0.85em;
-            color: #b3c0d1;
-            font-weight: bold;
-            background: rgba(255,255,255,0.15);
-            border-radius: 8px;
-            padding: 0 7px;
-            z-index: 2;
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
         }
-        .editado-label {
-            color: #fff;
-            font-size: 0.85em;
-            font-weight: bold;
-            margin-left: 6px;
+        
+        /* Media queries para responsividad */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            .card {
+                height: 95vh;
+                max-height: 95vh;
+                border-radius: 1rem;
+                padding: 1rem !important;
+            }
+            .titulo {
+                font-size: 1.3rem;
+            }
+            .bubble-right, .bubble-left {
+                max-width: 90%;
+                padding: 10px 14px;
+            }
+            .message-content {
+                max-width: 90%;
+            }
+            .chat-date {
+                font-size: 0.7rem;
+                padding: 1px 4px;
+            }
+            .indice-msg {
+                font-size: 0.7rem;
+                padding: 1px 4px;
+            }
+            .avatar {
+                width: 24px;
+                height: 24px;
+            }
+            .user-info {
+                min-width: 32px;
+            }
+            .user-name {
+                font-size: 0.65rem;
+            }
+            .editar-link, .eliminar-link {
+                font-size: 0.8rem;
+            }
+            .chat-messages-area {
+                max-height: 55vh;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .card {
+                height: 98vh;
+                max-height: 98vh;
+                border-radius: 0.8rem;
+                padding: 0.8rem !important;
+            }
+            .titulo {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem !important;
+            }
+            .bubble-right, .bubble-left {
+                max-width: 95%;
+                padding: 8px 12px;
+            }
+            .message-content {
+                max-width: 95%;
+            }
+            .chat-date {
+                font-size: 0.65rem;
+                right: 8px;
+                bottom: 4px;
+            }
+            .indice-msg {
+                font-size: 0.65rem;
+                top: 4px;
+                right: 8px;
+            }
+            .avatar {
+                width: 20px;
+                height: 20px;
+            }
+            .user-info {
+                min-width: 28px;
+            }
+            .user-name {
+                font-size: 0.6rem;
+            }
+            .editar-link, .eliminar-link {
+                font-size: 0.75rem;
+            }
+            .chat-messages-area {
+                max-height: 50vh;
+            }
+            .sticky-header {
+                padding-bottom: 6px;
+            }
+            .form-control {
+                font-size: 0.9rem;
+            }
+            .btn {
+                font-size: 0.9rem;
+                padding: 0.375rem 0.75rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card {
+                padding: 0.6rem !important;
+            }
+            .titulo {
+                font-size: 1.1rem;
+            }
+            .bubble-right, .bubble-left {
+                max-width: 98%;
+                padding: 6px 10px;
+            }
+            .message-content {
+                max-width: 98%;
+            }
+            .chat-date {
+                font-size: 0.6rem;
+            }
+            .indice-msg {
+                font-size: 0.6rem;
+            }
+            .avatar {
+                width: 18px;
+                height: 18px;
+            }
+            .user-info {
+                min-width: 24px;
+            }
+            .user-name {
+                font-size: 0.55rem;
+            }
+            .editar-link, .eliminar-link {
+                font-size: 0.7rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
-            <div class="col-md-7 col-lg-6">
-                <div class="card p-4 my-5 d-flex flex-column" style="min-height: 80vh;">
+            <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7">
+                <div class="card p-4 my-3 d-flex flex-column">
                     <div class="sticky-header">
                         <h2 class="mb-4 text-center titulo">Editor de Texto</h2>
                         <!-- Buscador y PDF -->
@@ -215,7 +366,7 @@ if ($edit_id !== null) {
                             echo '<img src="' . $avatar_url . '" alt="User" class="avatar mb-1"><br>';
                             echo '<span class="user-name">Marcos</span>';
                             echo '</div>';
-                            echo '<div style="flex:1; max-width:80%;">';
+                            echo '<div class="message-content">';
                             if ($edit_id === intval($fila['id'])) {
                                 // Formulario de edición inline tipo chat
                                 echo '<form action="editar.php" method="post" class="w-100 d-flex">';
@@ -225,10 +376,12 @@ if ($edit_id !== null) {
                                 echo '<a href="index.php" class="btn btn-secondary btn-sm">Cancelar</a>';
                                 echo '</form>';
                             } else {
-                                echo '<div class="' . $bubble . ' p-2 px-3 position-relative">';
+                                echo '<div class="' . $bubble . ' position-relative">';
                                 // Número de índice
                                 echo '<span class="indice-msg">' . $linea . '</span>';
-                                echo '<span class="fw-semibold">' . htmlspecialchars($fila['contenido']) . '</span><br>';
+                                echo '<div class="message-text">';
+                                echo '<span class="fw-semibold">' . htmlspecialchars($fila['contenido']) . '</span>';
+                                echo '</div>';
                                 echo '<span class="chat-date">' . $fecha;
                                 if ($es_editado) {
                                     echo ' <span class="editado-label">(editado 🖉)</span>';
@@ -236,7 +389,7 @@ if ($edit_id !== null) {
                                 echo '</span>';
                                 echo '</div>';
                                 // Botones debajo de la burbuja
-                                echo '<div class="d-flex mt-1" style="gap:8px;">';
+                                echo '<div class="action-buttons">';
                                 echo '<a href="index.php?edit_id=' . $fila['id'] . ( $busqueda ? '&busqueda=' . urlencode($busqueda) : '' ) . '" class="editar-link">Editar</a>';
                                 echo "<a href='eliminar.php?id=" . $fila['id'] . "' class='eliminar-link' onclick='return confirm(\"¿Eliminar esta línea?\")'>Eliminar</a>";
                                 echo '</div>';
