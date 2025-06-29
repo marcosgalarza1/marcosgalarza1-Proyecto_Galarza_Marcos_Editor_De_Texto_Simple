@@ -1,1 +1,0 @@
-# marcosgalarza1-Proyecto_Galarza_Marcos_Editor_De_Texto_Simple
