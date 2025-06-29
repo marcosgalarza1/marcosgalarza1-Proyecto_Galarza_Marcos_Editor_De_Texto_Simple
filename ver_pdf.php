@@ -13,7 +13,7 @@ $ancho_hoja = 100;
 $altura_total = ($num_filas * $altura_fila) + $altura_extra;
 if ($altura_total < 80) { $altura_total = 80; } // Mínimo 80mm
 
-$pdf = new FPDF('P', 'mm', array($ancho_hoja, $altura_total)); // 100mm de ancho, altura dinámica
+$pdf = new FPDF('L', 'mm', array($ancho_hoja, $altura_total)); // Cambiado a orientación horizontal
 $pdf->AddPage();
 $pdf->SetMargins(2, 4, 2); // Márgenes pequeños
 $pdf->SetAutoPageBreak(false, 0); // No saltar de página
