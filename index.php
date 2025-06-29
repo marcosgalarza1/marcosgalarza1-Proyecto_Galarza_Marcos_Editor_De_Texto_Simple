@@ -38,6 +38,19 @@ if ($edit_id !== null) {
             align-items: center;
             justify-content: center;
             padding: 10px;
+            margin: 0;
+        }
+        .container-fluid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 0;
+        }
+        .row {
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
         .card {
             border-radius: 1.5rem;
@@ -50,6 +63,8 @@ if ($edit_id !== null) {
             justify-content: flex-end;
             position: relative;
             width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
         }
         .sticky-header {
             position: sticky;
@@ -195,11 +210,16 @@ if ($edit_id !== null) {
             body {
                 padding: 5px;
             }
+            .container-fluid {
+                padding: 5px;
+            }
             .card {
                 height: 95vh;
                 max-height: 95vh;
                 border-radius: 1rem;
                 padding: 1rem !important;
+                max-width: 450px;
+                margin: 0 auto;
             }
             .titulo {
                 font-size: 1.3rem;
@@ -243,6 +263,8 @@ if ($edit_id !== null) {
                 max-height: 98vh;
                 border-radius: 0.8rem;
                 padding: 0.8rem !important;
+                max-width: 400px;
+                margin: 0 auto;
             }
             .titulo {
                 font-size: 1.2rem;
@@ -296,6 +318,8 @@ if ($edit_id !== null) {
         @media (max-width: 480px) {
             .card {
                 padding: 0.6rem !important;
+                max-width: 350px;
+                margin: 0 auto;
             }
             .titulo {
                 font-size: 1.1rem;
@@ -327,13 +351,21 @@ if ($edit_id !== null) {
                 font-size: 0.7rem;
             }
         }
+        
+        /* Para pantallas muy grandes, mantener un ancho máximo cómodo */
+        @media (min-width: 1200px) {
+            .card {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-12 col-sm-11 col-md-10 col-lg-8 col-xl-7">
-                <div class="card p-4 my-3 d-flex flex-column">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 d-flex justify-content-center">
+                <div class="card p-4 d-flex flex-column">
                     <div class="sticky-header">
                         <h2 class="mb-4 text-center titulo">Editor de Texto</h2>
                         <!-- Buscador y PDF -->
